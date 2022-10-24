@@ -17,7 +17,13 @@ library(ggplot2)
 
 -- importing the data
 setwd("/cloud/project/")
-dataset_interview <- read_csv("dataset_interview.csv")
+dataset_interview <- read_csv("Dataset_interview.csv")
 
 -- viewi the dataset
 glimpse(dataset_interview)
+
+-- date and cost graph
+ggplot(data = dataset_interview)+geom_line(mapping = aes(x=date, y= cost))+labs(title="Relationship between Date & Cost")
+
+--date and impressions graph
+ggplot(data = dataset_interview)+geom_line(mapping = aes(x=date, y= impressions))+labs(title="Relationship between Date & impressions")
