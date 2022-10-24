@@ -27,3 +27,34 @@ ggplot(data = dataset_interview)+geom_line(mapping = aes(x=date, y= cost))+labs(
 
 --date and impressions graph
 ggplot(data = dataset_interview)+geom_line(mapping = aes(x=date, y= impressions))+labs(title="Relationship between Date & impressions")
+
+-- Measuirng the CPM using SQL
+## CPM by each site 
+SELECT site, SUM (cost)*1000/sum(impressions) as CPM 
+  FROM `project-interview-366520.advetisement_data.ad_data` 
+ GROUP BY site
+ORDER BY CPM DESC
+
+## Total CPM by sites
+SELECT  SUM(CPM) as total_cpm
+FROM
+(SELECT site, SUM (cost)*1000/sum(impressions) as CPM 
+  FROM `project-interview-366520.advetisement_data.ad_data` 
+ GROUP BY site
+ORDER BY CPM DESC)
+
+## CPM by each ad_type
+SELECT ad_type, SUM (cost)*1000/sum(impressions) as CPM 
+  FROM `project-interview-366520.advetisement_data.ad_data` 
+ 
+GROUP BY ad_type
+ORDER BY CPM DESC
+
+## Total CPM by ad_types
+SELECT  SUM(CPM) as total_cpm
+FROM
+(SELECT ad_type, SUM (cost)*1000/sum(impressions) as CPM 
+  FROM `project-interview-366520.advetisement_data.ad_data` 
+ 
+GROUP BY ad_type
+ORDER BY CPM DESC)
