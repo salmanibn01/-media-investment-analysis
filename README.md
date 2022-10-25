@@ -58,3 +58,19 @@ FROM
  
 GROUP BY ad_type
 ORDER BY CPM DESC)
+
+-- Detecting the outlier in impressions using SQL
+SELECT date,  sum(impressions) as imp
+ FROM `project-interview-366520.advetisement_data.ad_data` 
+WHERE  date BETWEEN '2019-06-10' and '2019-06-17'  
+GROUP BY date
+ORDER BY date
+
+-- Detecting the outlier in cost using SQL
+SELECT site, date,  sum(cost) as cost
+ FROM `project-interview-366520.advetisement_data.ad_data` 
+WHERE  date BETWEEN '2019-06-17' and '2019-06-24'  
+GROUP BY date, site
+ORDER BY cost desc
+
+
