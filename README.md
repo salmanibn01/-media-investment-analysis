@@ -64,7 +64,14 @@ SELECT date,  sum(impressions) as imp
  FROM `project-interview-366520.advetisement_data.ad_data` 
 WHERE  date BETWEEN '2019-06-10' and '2019-06-17'  
 GROUP BY date
-ORDER BY date
+ORDER BY imp
+
+-- June 13 has the highest impression. Let's check which wbsite has the highest impression  
+SELECT site,  sum(impressions) as imp
+ FROM `project-interview-366520.advetisement_data.ad_data` 
+WHERE date = '2019-06-13'  
+GROUP BY site
+order by imp desc
 
 -- Detecting the outlier in cost using SQL
 SELECT site, date,  sum(cost) as cost
